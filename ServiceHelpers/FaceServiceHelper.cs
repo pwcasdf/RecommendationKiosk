@@ -51,7 +51,7 @@ namespace ServiceHelpers
 
         public static Action Throttled;
 
-        private static string apiKey;
+        private static string apiKey= "307bd0303dd949e6b7fd5de3e5e8d757";
         public static string ApiKey
         {
             get { return apiKey; }
@@ -66,7 +66,7 @@ namespace ServiceHelpers
             }
         }
 
-        private static string apiKeyRegion;
+        private static string apiKeyRegion= "southeastasia";
         public static string ApiKeyRegion
         {
             get { return apiKeyRegion; }

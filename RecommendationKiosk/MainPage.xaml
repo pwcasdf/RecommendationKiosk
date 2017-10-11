@@ -3,11 +3,47 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RecommendationKiosk"
+    xmlns:ctl="using:RecommendationKiosk.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    SizeChanged="OnPageSizeChanged"
+    mc:Ignorable="d"
+    x:Name="page">
 
+    <!-- Root grid  @jack -->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <!-- Root Grid separation  @jack -->
+        <Grid x:Name="rootGrid" Margin="12,20,12,12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.06*"/>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="0.34*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Top row text "Recommending Kiosk"  @jack -->
+            <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Recommending Kiosk" Style="{StaticResource TitleTextBlockStyle}" Foreground="Black" FontSize="40" FontWeight="Bold"/>
+            </StackPanel>
+
+            <!-- Recommendation images or contents here  @jack -->
+            <Grid Grid.Row="1">
+                <Image x:Name="recommendationImage" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!-- Bottom grid separation  @jack -->
+            <Grid x:Name="bottomGrid" Grid.Row="2" Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid x:Name="cameraHostGrid" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
+                    <ctl:CameraControl x:Name="cameraControl" />
+                </Grid>
+            </Grid>
+
+        </Grid>
 
     </Grid>
 </Page>

@@ -25,6 +25,38 @@ namespace RecommendationKiosk
         public MainPage()
         {
             this.InitializeComponent();
+
+            //Window.Current.Activated += CurrentWindowActivationStateChanged;
+            //this.cameraControl.FilterOutSmallFaces = true;
+            //this.cameraControl.HideCameraControls();
+            //this.cameraControl.CameraAspectRatioChanged += CameraControl_CameraAspectRatioChanged;
+        }
+
+        private async void CurrentWindowActivationStateChanged(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
+        {
+            if ((e.WindowActivationState == Windows.UI.Core.CoreWindowActivationState.CodeActivated ||
+                e.WindowActivationState == Windows.UI.Core.CoreWindowActivationState.PointerActivated) &&
+                this.cameraControl.CameraStreamState == Windows.Media.Devices.CameraStreamState.Shutdown)
+            {
+                // When our Window loses focus due to user interaction Windows shuts it down, so we 
+                // detect here when the window regains focus and trigger a restart of the camera.
+                await this.cameraControl.StartStreamAsync(isForRealTimeProcessing: true);
+            }
+        }
+
+        private void CameraControl_CameraAspectRatioChanged(object sender, EventArgs e)
+        {
+            this.UpdateCameraHostSize();
+        }
+
+        private void UpdateCameraHostSize()
+        {
+            this.cameraHostGrid.Width = this.cameraHostGrid.ActualHeight * (this.cameraControl.CameraAspectRatio != 0 ? this.cameraControl.CameraAspectRatio : 1.777777777777);
+        }
+
+        private void OnPageSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            this.UpdateCameraHostSize();
         }
     }
 }
