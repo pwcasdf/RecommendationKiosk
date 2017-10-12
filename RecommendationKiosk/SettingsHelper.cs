@@ -117,7 +117,7 @@ namespace RecommendationKiosk
             object value = ApplicationData.Current.RoamingSettings.Values["FaceApiKey"];
             if (value != null)
             {
-                this.FaceApiKey = value.ToString();
+                this.FaceApiKey = "FACE_API_KEY_HERE";
             }
 
             value = ApplicationData.Current.RoamingSettings.Values["FaceApiKeyRegion"];
@@ -212,7 +212,7 @@ namespace RecommendationKiosk
             ApplicationData.Current.RoamingSettings.Values.Clear();
         }
 
-        private string faceApiKey = "a280a68c26394e95ba6b1ae6970f6b7f";
+        private string faceApiKey = string.Empty;
         public string FaceApiKey
         {
             get { return this.faceApiKey; }
