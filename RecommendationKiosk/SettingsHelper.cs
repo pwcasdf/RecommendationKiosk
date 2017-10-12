@@ -205,27 +205,6 @@ namespace RecommendationKiosk
             {
                 this.CustomVisionTrainingApiKey = value.ToString();
             }
-
-            // load mall kiosk demo custom settings from file as the content is too big to be saved as a string-like setting
-            try
-            {
-                using (Stream stream = await ApplicationData.Current.RoamingFolder.OpenStreamForReadAsync("MallKioskDemoCustomSettings.xml"))
-                {
-                    using (StreamReader reader = new StreamReader(stream))
-                    {
-                        this.MallKioskDemoCustomSettings = await reader.ReadToEndAsync();
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                this.RestoreMallKioskSettingsToDefaultFile();
-            }
-        }
-
-        public void RestoreMallKioskSettingsToDefaultFile()
-        {
-            this.MallKioskDemoCustomSettings = File.ReadAllText("Views\\MallKioskDemoConfig\\MallKioskDemoSettings.xml");
         }
 
         public void RestoreAllSettings()
@@ -233,7 +212,7 @@ namespace RecommendationKiosk
             ApplicationData.Current.RoamingSettings.Values.Clear();
         }
 
-        private string faceApiKey = string.Empty;
+        private string faceApiKey = "a280a68c26394e95ba6b1ae6970f6b7f";
         public string FaceApiKey
         {
             get { return this.faceApiKey; }
@@ -244,7 +223,7 @@ namespace RecommendationKiosk
             }
         }
 
-        private string faceApiKeyRegion = "westus";
+        private string faceApiKeyRegion = "southeastasia";
         public string FaceApiKeyRegion
         {
             get { return this.faceApiKeyRegion; }
